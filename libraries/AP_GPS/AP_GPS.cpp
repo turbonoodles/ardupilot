@@ -1226,7 +1226,7 @@ void AP_GPS::send_mavlink_gps_raw(mavlink_channel_t chan)
         ground_speed(0)*100,  // cm/s
         ground_course(0)*100, // 1/100 degrees,
         num_sats(0),
-        0,                    // TODO: Elipsoid height in mm
+        loc.altitude_ellipsoid * 10UL,
         hacc * 1000,          // one-sigma standard deviation in mm
         vacc * 1000,          // one-sigma standard deviation in mm
         sacc * 1000,          // one-sigma standard deviation in mm/s
@@ -1264,7 +1264,7 @@ void AP_GPS::send_mavlink_gps2_raw(mavlink_channel_t chan)
         state[1].rtk_num_sats,
         state[1].rtk_age_ms,
         gps_yaw_cdeg(1),
-        0,                    // TODO: Elipsoid height in mm
+        loc.altitude_ellipsoid * 10UL,
         hacc * 1000,          // one-sigma standard deviation in mm
         vacc * 1000,          // one-sigma standard deviation in mm
         sacc * 1000,          // one-sigma standard deviation in mm/s
