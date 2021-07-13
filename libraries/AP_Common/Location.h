@@ -18,7 +18,7 @@ public:
 
     // note that mission storage only stores 24 bits of altitude (~ +/- 83km)
     int32_t alt;
-    int32_t altitude_ellipsoid;
+    int32_t alt_ellipsoid;
     int32_t lat;
     int32_t lng;
 

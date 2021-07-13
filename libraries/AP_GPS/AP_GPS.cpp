@@ -23,6 +23,8 @@
 #include <AP_RTC/AP_RTC.h>
 #include <climits>
 
+#include <stdio.h>
+
 #include "AP_GPS_NOVA.h"
 #include "AP_GPS_ERB.h"
 #include "AP_GPS_GSOF.h"
@@ -1226,12 +1228,13 @@ void AP_GPS::send_mavlink_gps_raw(mavlink_channel_t chan)
         ground_speed(0)*100,  // cm/s
         ground_course(0)*100, // 1/100 degrees,
         num_sats(0),
-        loc.altitude_ellipsoid * 10UL,
+        loc.alt_ellipsoid * 10UL,
         hacc * 1000,          // one-sigma standard deviation in mm
         vacc * 1000,          // one-sigma standard deviation in mm
         sacc * 1000,          // one-sigma standard deviation in mm/s
         0,                    // TODO one-sigma heading accuracy standard deviation
         gps_yaw_cdeg(0));
+        printf("MSL: %d WGS: %d\n", loc.alt, loc.alt_ellipsoid);
 }
 
 #if GPS_MAX_RECEIVERS > 1
@@ -1264,7 +1267,7 @@ void AP_GPS::send_mavlink_gps2_raw(mavlink_channel_t chan)
         state[1].rtk_num_sats,
         state[1].rtk_age_ms,
         gps_yaw_cdeg(1),
-        loc.altitude_ellipsoid * 10UL,
+        loc.alt_ellipsoid * 10UL,
         hacc * 1000,          // one-sigma standard deviation in mm
         vacc * 1000,          // one-sigma standard deviation in mm
         sacc * 1000,          // one-sigma standard deviation in mm/s
